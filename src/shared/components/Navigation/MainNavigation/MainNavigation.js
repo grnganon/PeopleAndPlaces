@@ -1,20 +1,33 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import MainHeader from "../MainHeader/MainHeader";
-import "./MainNavigation.css";
-import NavLinks from "../NavLinks/NavLinks";
-import SideDrawer from "../SideDrawer/SideDrawer";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import MainHeader from '../MainHeader/MainHeader';
+import './MainNavigation.css';
+import NavLinks from '../NavLinks/NavLinks';
+import SideDrawer from '../SideDrawer/SideDrawer';
+import Backdrop from '../../UIElements/Backdrop/Backdrop';
 
 const MainNavigation = props => {
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
+  const toggleDrawerHandler = () => setDrawerIsOpen(!drawerIsOpen);
   return (
     <React.Fragment>
-      <SideDrawer>
-        <nav className="main-navigation__drawer-nav">
+      {/*backdrop is visible background when side drawer is open, clicking it
+      closes the drawer*/}
+      {drawerIsOpen && <Backdrop onClick={toggleDrawerHandler} />}
+      <SideDrawer show={drawerIsOpen}>
+        <nav
+          className="main-navigation__drawer-nav"
+          onClick={toggleDrawerHandler}
+        >
           <NavLinks />
         </nav>
       </SideDrawer>
+      )
       <MainHeader>
-        <button className="main-navigation__menu-btn">
+        <button
+          className="main-navigation__menu-btn"
+          onClick={toggleDrawerHandler}
+        >
           <span />
           <span />
           <span />
