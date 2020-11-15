@@ -1,8 +1,8 @@
 import React from 'react';
-
-import './PlaceList.css';
 import Card from '../../../shared/components/UIElements/Card/Card';
 import PlaceItem from '../PlaceItem/PlaceItem';
+
+import './PlaceList.css';
 
 const PlaceList = props => {
   if (props.items.length === 0) {
