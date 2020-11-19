@@ -20,7 +20,24 @@ const PlaceItem = props => {
         footer={<Button onClick={closeMapHandler}>CLOSE</Button>}
       >
         <div className="map-container">
-          <h2>THE MAP PLACEHOLDER</h2>
+          {/*Instead of using the map component, just using an iframe with embedded Google map...
+          Don't want to use actually Google API since key would be in public repo*/}
+          <iframe
+            title="map"
+            width="100%"
+            height="100%"
+            frameBorder="0"
+            scrolling="no"
+            marginHeight="0"
+            marginWidth="0"
+            src={
+              'https://maps.google.com/maps?q=' +
+              props.coordinates.lat.toString() +
+              ',' +
+              props.coordinates.lng.toString() +
+              '&t=&z=15&ie=UTF8&iwloc=&output=embed'
+            }
+          />{' '}
         </div>
       </Modal>
       <li className="place-item">
