@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 import './Input.css';
 import { validate } from '../../../util/validators';
@@ -27,6 +27,16 @@ const Input = props => {
     isValid: false,
     isTouched: false
   });
+
+  // object destructuring to have smaller dependencies for the useEffect
+  const { id, onInput } = props;
+  const { value, isValid } = inputState;
+
+  // when any of the parent props, or state here changes calling the onInput provided from parent
+  useEffect(() => {
+    onInput(id, value, isValid);
+  }, [id, onInput, value, isValid]);
+
   const changeHandler = event => {
     // store and validate input as user types - dispatch to reducer state object to reset state
     dispatch({
