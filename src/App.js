@@ -10,6 +10,7 @@ import Users from './user/pages/Users';
 import NewPlace from './places/pages/NewPlace/NewPlace';
 import MainNavigation from './shared/components/Navigation/MainNavigation/MainNavigation';
 import UserPlaces from './places/pages/UserPlaces/UserPlaces';
+import UpdatePlace from './places/pages/UpdatePlace/UpdatePlace';
 
 const App = () => {
   return (
@@ -19,6 +20,8 @@ const App = () => {
         <Switch>
           <Route path="/" component={Users} exact />
           <Route path="/places/new" component={NewPlace} exact />
+          {/*order matters! if /places/:placeId was before /new we would always route to the placeId route with "new" as the id*/}
+          <Route path="/places/:placeId" component={UpdatePlace} exact />
           <Route path="/:userId/places" component={UserPlaces} exact />
           <Redirect to="/" />
         </Switch>
